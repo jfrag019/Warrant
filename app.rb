@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'rest-client'
 
-get '/waivers' do
+get '/warrants' do
 
 today = Date.today
 twoDaysBefore = Date.today-2

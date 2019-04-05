@@ -4,7 +4,7 @@ require 'rest-client'
 get '/warrants' do
 
 today = Date.today
-twoDaysBefore = Date.today-2
+twoDaysBefore = Date.today-4
 
 today_s = today.strftime("%F")
 twoDaysBefore_s = twoDaysBefore.strftime("%F")
@@ -28,7 +28,13 @@ features = collection['features'].map do |record|
     'id' => id,
     'type' => 'Feature',
     'properties' => record['properties'].merge('title' => title),
-    'geometry' => record['geometry']
+    'geometry' => {
+        'type' => 'Point',
+        'coordinates' => [
+          record['properties']['Longitude'].to_f,
+          record['properties']['Latitude'].to_f
+        ]
+      }
   }
 	
 
